@@ -1,29 +1,31 @@
-from kafka import KafkaConsumer
-import json
 import pickle
-import numpy as np
 import pandas as pd
-from sqlalchemy import create_engine
 
-
-with open('modelo_entrenado.pkl', 'rb') as f:
+# Cargar el modelo desde el archivo pickle
+with open('artifacts/models/model.pkl', 'rb') as f:
     model = pickle.load(f)
-
 
 def process_and_predict(data):
     """
     Procesa los datos consumidos y realiza la predicción usando el modelo.
+
+    Parameters:
+    data (dict): Datos consumidos desde Kafka.
+
+    Returns:
+    float: Predicción del modelo.
     """
-    # Convertir el mensaje consumido a un DataFrame o el formato adecuado según el modelo
-    df = pd.DataFrame([data])
+
+
+    # Verificar si los datos ya son un DataFrame
+    if not isinstance(data, pd.DataFrame):
+        df = pd.DataFrame(data)
+    else:
+        df = data
     
-    # Asegurarse de que las columnas coinciden con las características usadas para entrenar el modelo
-    # Aquí puedes hacer cualquier preprocesamiento que sea necesario, por ejemplo, eliminar columnas
-    # o ajustar los tipos de datos.
-    X = df.drop(['happiness_score', 'country'], axis=1)
+    X = df[['happiness_rank', 'gdp_per_capita', 'family', 'health', 'freedom', 'trust_government_corruption', 'generosity', 'year', 'country_int']]
     
-    # Realizar la predicción
     prediccion = model.predict(X)
     
-    # Retornar la predicción junto con los datos originales (si es necesario para guardarlos)
-    return prediccion[0], df
+    # Retornar solo la predicción
+    return prediccion[0]

@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, Integer, Float, String, DateTime, inspect, MetaData, Table, Column, BIGINT
 from sqlalchemy_utils import database_exists, create_database
-
 import os
 import logging
 import warnings
@@ -20,7 +19,14 @@ database = os.getenv("PG_DATABASE")
 
 
 def creating_engine(database=database):
-    """ Create a connection engine to a PostgreSQL database """
+    """ Create a connection engine to a PostgreSQL database
+     
+       Parameters:
+       database (str): Name of the database to connect to.
+       
+       Returns:
+       engine (sqlalchemy.engine.base.Engine): Engine to connect to the database.
+    """
     url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
     engine = create_engine(url)
     
@@ -34,7 +40,14 @@ def creating_engine(database=database):
 
 
 def infer_sqlalchemy_type(dtype, column_name):
-    """ Map pandas dtype to SQLAlchemy's types """
+    """ Map pandas dtype to SQLAlchemy's types 
+    Parameters:
+    dtype (pandas.dtype): Data type to map.
+    column_name (str): Name of the column.
+    
+    Returns:
+    sqlalchemy_type (sqlalchemy.sql.sqltypes.TypeEngine): SQLAlchemy type.
+    """
     if "int" in dtype.name:
         return Integer
     elif "float" in dtype.name:
@@ -48,7 +61,16 @@ def infer_sqlalchemy_type(dtype, column_name):
     
 
 def load_clean_data(engine, df, table_name):
-    """ Load clean data into a table """
+    """ Load clean data into a table 
+    Parameters:
+    engine (sqlalchemy.engine.base.Engine): Engine to connect to the database.
+    df (pandas.DataFrame): DataFrame to load into the database.
+    table_name (str): Name of the table to create.
+    
+    Returns:
+    None
+    """
+
     logging.info(f"Creating table {table_name} from Pandas DataFrame")
     
     if not inspect(engine).has_table(table_name):
