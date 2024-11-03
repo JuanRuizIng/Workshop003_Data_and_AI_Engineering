@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "workshop003-data-and-ai-engineering"
+version = "0.1.0"
+description = "Data And AI in data streaming with scikit-learn and kafka"
+authors = ["Juan Andrés Ruiz Muñoz <143564687+JuanRuizIng@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pandas = "2.1.4"
+matplotlib = "^3.9.2"
+seaborn = "^0.13.2"
+scikit-learn = "^1.5.2"
+xgboost = "^2.1.1"
+python-dotenv = "^1.0.1"
+sqlalchemy = "^2.0.36"
+sqlalchemy-utils = "^0.41.2"
+confluent-kafka = "^2.6.0"
+kafka-python = "^2.0.2"
+psycopg2-binary = "^2.9.10"
+kafka-python-ng = "^2.2.3"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
