@@ -73,8 +73,7 @@ def kafka_producer():
                 "freedom": row["freedom"],
                 "trust_government_corruption": row["trust_government_corruption"],
                 "generosity": row["generosity"],
-                "year": row["year"],
-                "country_int": row["country_int"]
+                "year": row["year"]
             }
             producer.send(kafka_topic, value=message)
             logging.info("Message sent to Kafka topic")

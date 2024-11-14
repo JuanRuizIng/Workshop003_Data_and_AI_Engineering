@@ -71,7 +71,4 @@ def clean_and_concat_csv_data():
     df = pd.concat([df_2015, df_2016, df_2017, df_2018, df_2019], axis=0)
     df['trust_government_corruption'] = df['trust_government_corruption'].fillna(df['trust_government_corruption'].median())
 
-    le = LabelEncoder()
-    df['country_int'] = le.fit_transform(df['country'])
-
     return df

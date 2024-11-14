@@ -23,7 +23,7 @@ def process_and_predict(data):
     else:
         df = data
     
-    X = df[['happiness_rank', 'gdp_per_capita', 'family', 'health', 'freedom', 'trust_government_corruption', 'generosity', 'year', 'country_int']]
+    X = df[['happiness_rank', 'gdp_per_capita', 'family', 'health', 'freedom', 'trust_government_corruption', 'generosity', 'year']]
     
     prediccion = model.predict(X)
     
