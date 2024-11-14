@@ -126,11 +126,15 @@ python main.py
 
 * In the kafka consumer:
 
-![image](https://github.com/user-attachments/assets/10733ac2-3f80-4d9f-b901-ff5f9db8e81f)
+![image](https://github.com/user-attachments/assets/af633254-53bf-44c5-ba1b-18024e918169)
+
+* In the kafka producer:
+
+![image](https://github.com/user-attachments/assets/5fa531e6-85b5-4518-a226-89cbf66a4c22)
 
 * In the database:
 
-![image](https://github.com/user-attachments/assets/ff016914-0a45-459c-bd36-3dadebe23e7f)
+![image](https://github.com/user-attachments/assets/c58d4d71-9f8e-4d03-b24c-f5bf7f52a83d)
 
 
 ## Thank you! 💻
